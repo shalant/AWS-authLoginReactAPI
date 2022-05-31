@@ -1,19 +1,18 @@
-const AWS require('aws-sdk');
+const AWS = require('aws-sdk');
 AWS.config.update({
     region: 'us-east-1'
 });
 const util = require('..utils/util');
 const bcrypt = require('bcryptjs');
-const { response } = require('express');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const userTable = 'jinmeister-users';
 
 async function register(userInfo) {
-    const name = userinfo.name;
-    const email = userinfo.email;
-    const username = userinfo.username;
-    const password = userinfo.password;
+    const name = userInfo.name;
+    const email = userInfo.email;
+    const username = userInfo.username;
+    const password = userInfo.password;
     if (!username || !name || !email || !password) {
         return util.buildResponse(401, {
             message: 'All fields are required'
@@ -65,7 +64,9 @@ async function saveUser(user) {
     }
     return await dynamodb.put(params).promise().then(() => {
         return true;
-    }, error => {console.error('There is an error saving user: ', error)})
+    }, error => {
+        console.error('There is an error saving user: ', error)
+    });
 }
 
 modules.exports.register = register;
