@@ -19,7 +19,7 @@ async function register(userInfo) {
         })
     }
 
-    const dynamoUser = await getUser(username);
+    const dynamoUser = await getUser(username.toLowerCase().trim());
     if (dynamoUser && dynamoUser.username) {
         return util.buildResponse(401, {
             message: 'username already exists in our database. please choose a different username'
@@ -69,4 +69,4 @@ async function saveUser(user) {
     });
 }
 
-modules.exports.register = register;
+module.exports.register = register;

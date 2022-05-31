@@ -22,7 +22,6 @@ exports.handler = async (event) => {
         case event.httpMethod === 'POST' && event.path === loginPath:
             const loginBody = JSON.parse(event.body);
             response = await loginService.login(loginBody);
-            response = util.buildResponse(200);
             break;
         case event.httpMethod === 'POST' && event.path === verifyPath:
             const verifyBody = JSON.parse(event.body);

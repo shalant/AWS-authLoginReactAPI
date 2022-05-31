@@ -3,7 +3,7 @@ function buildResponse(statusCode, body) {
         statusCode: statusCode,
         headers: {
             'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/JSON'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
     }
